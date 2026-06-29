@@ -1,4 +1,4 @@
-# 🏨 Hotel Booking Cancellation Prediction
+# 🏨 Hotel Booking Cancellation Prediction System
 
 An end-to-end Machine Learning project that predicts whether a hotel booking will be canceled before check-in.
 
