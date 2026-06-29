@@ -5,7 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 
-TRAIN_PATH = Path("data") / "hotel_bookings.csv"
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+TRAIN_PATH = BASE_DIR / "data" / "hotel_bookings.csv"
 
 
 def load_data(train_path=TRAIN_PATH):
