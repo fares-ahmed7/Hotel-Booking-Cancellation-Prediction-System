@@ -1,72 +1,90 @@
 # 🏨 Hotel Booking Cancellation Prediction System
 
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-REST%20API-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-Pipeline-orange?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-Model-blueviolet)](https://xgboost.readthedocs.io/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+
 An end-to-end Machine Learning project that predicts whether a hotel booking will be canceled before check-in.
 
-The project covers the complete ML workflow, including data preprocessing, model comparison using cross-validation, model evaluation, deployment with Flask, and containerization using Docker.
+The project covers the complete ML workflow: data preprocessing, model comparison via cross-validation, model evaluation, deployment with Flask, and containerization with Docker.
 
 ---
 
-# 📌 Project Overview
+## 📑 Table of Contents
+
+- [Project Overview](#-project-overview)
+- [Features](#-features)
+- [Dataset](#-dataset)
+- [Project Structure](#-project-structure)
+- [Technologies Used](#-technologies-used)
+- [Installation](#️-installation)
+- [Training](#-training)
+- [Models Compared](#-models-compared)
+- [Evaluation Metrics](#-evaluation-metrics)
+- [Exploratory Data Analysis](#-exploratory-data-analysis)
+- [Model Evaluation](#-model-evaluation)
+- [Flask API](#-flask-api)
+- [Docker](#-docker)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
+- [Author](#-author)
+
+---
+
+## 📌 Project Overview
 
 Hotel booking cancellations can significantly impact hotel revenue and operational planning. This project builds several machine learning models to predict booking cancellations and automatically selects the best-performing model based on ROC-AUC cross-validation.
 
-The final solution is deployed as a REST API using Flask and containerized with Docker.
+The final solution is deployed as a REST API using Flask and containerized with Docker for easy, reproducible deployment.
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-- End-to-End Machine Learning Pipeline
-- Automatic Data Preprocessing
-- Missing Value Imputation
-- One-Hot Encoding
-- Feature Scaling
-- Multiple Model Comparison
-- 5-Fold Cross Validation
-- Automatic Best Model Selection
-- Model Evaluation
-- Saved Trained Pipeline
-- Flask REST API
-- Docker Support
-- Exploratory Data Analysis (EDA)
-- Model Evaluation Notebook
+- End-to-end machine learning pipeline
+- Automatic data preprocessing (missing value imputation, one-hot encoding, feature scaling)
+- Multiple model comparison with 5-fold cross-validation
+- Automatic best model selection based on ROC-AUC
+- Saved, ready-to-use trained pipeline (`.pkl`)
+- Flask REST API for real-time predictions
+- Docker support for containerized deployment
+- Exploratory Data Analysis (EDA) notebook
+- Model evaluation notebook with detailed metrics and plots
 
 ---
 
-# 📂 Dataset
+## 📂 Dataset
 
-Dataset:
-Hotel Booking Demand Dataset
+**Dataset:** Hotel Booking Demand Dataset
 
-Target Variable:
+**Target variable:** `is_canceled`
 
-```
-is_canceled
-```
+The dataset contains hotel reservation information such as:
 
-Dataset contains hotel reservation information such as:
-
-- Hotel Type
-- Lead Time
-- Arrival Date
+- Hotel type
+- Lead time
+- Arrival date
 - Country
-- Market Segment
-- Deposit Type
-- Customer Type
-- ADR
-- Previous Cancellations
-- Special Requests
-- and many more...
+- Market segment
+- Deposit type
+- Customer type
+- ADR (Average Daily Rate)
+- Previous cancellations
+- Special requests
+- and more...
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
 
-```text
-Hotel-Booking-Cancellation/
+```
+Hotel-Booking-Cancellation-Prediction-System/
 │
-├── app.py
-├── train.py
+├── app.py                     # Flask REST API
+├── train.py                   # Model training script
 ├── Dockerfile
 ├── .dockerignore
 ├── requirements.txt
@@ -77,11 +95,11 @@ Hotel-Booking-Cancellation/
 │   └── hotel_bookings.csv
 │
 ├── models/
-│   └── best_pipeline.pkl
+│   └── best_pipeline.pkl      # Trained pipeline (saved after training)
 │
 ├── notebooks/
-│   ├── EDA.ipynb
-│   └── Model_evaluation.ipynb
+│   ├── EDA.ipynb               # Exploratory Data Analysis
+│   └── Model_evaluation.ipynb  # Model evaluation & comparison
 │
 ├── results/
 │   ├── best_model.txt
@@ -95,37 +113,42 @@ Hotel-Booking-Cancellation/
 
 ---
 
-# 🛠 Technologies Used
+## 🛠 Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- Scikit-Learn
-- XGBoost
-- LightGBM
-- Matplotlib
-- Flask
-- Flask-CORS
-- Joblib
-- Docker
+| Category | Tools |
+|---|---|
+| Language | Python |
+| Data Handling | Pandas, NumPy |
+| Machine Learning | Scikit-Learn, XGBoost, LightGBM |
+| Visualization | Matplotlib |
+| API | Flask, Flask-CORS |
+| Model Persistence | Joblib |
+| Deployment | Docker |
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
-Clone the repository
-
-```bash
-git clone https://github.com/fares-ahmed7/Hotel-Booking-Cancellation.git
-```
-
-Move into the project directory
+**1. Clone the repository**
 
 ```bash
-cd Hotel-Booking-Cancellation
+git clone https://github.com/fares-ahmed7/Hotel-Booking-Cancellation-Prediction-System.git
 ```
 
-Install dependencies
+**2. Move into the project directory**
+
+```bash
+cd Hotel-Booking-Cancellation-Prediction-System
+```
+
+**3. (Optional) Create a virtual environment**
+
+```bash
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+```
+
+**4. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
@@ -133,9 +156,9 @@ pip install -r requirements.txt
 
 ---
 
-# 🚀 Training
+## 🚀 Training
 
-Run
+Run:
 
 ```bash
 python train.py
@@ -143,23 +166,21 @@ python train.py
 
 The training script automatically:
 
-- Loads the dataset
-- Splits train/test data
-- Performs preprocessing inside a Scikit-learn Pipeline
-- Compares multiple models using 5-Fold Cross Validation
-- Selects the best model
-- Trains the best pipeline
-- Evaluates on the test set
-- Saves the trained pipeline
+1. Loads the dataset
+2. Splits it into train/test sets
+3. Performs preprocessing inside a scikit-learn `Pipeline`
+4. Compares multiple models using 5-fold cross-validation
+5. Selects the best-performing model
+6. Trains the final pipeline
+7. Evaluates it on the test set
+8. Saves the trained pipeline
 
-Saved model:
-
+**Saved model:**
 ```
 models/best_pipeline.pkl
 ```
 
-Saved results:
-
+**Saved results:**
 ```
 results/cv_results.csv
 results/best_model.txt
@@ -167,9 +188,7 @@ results/best_model.txt
 
 ---
 
-# 🤖 Models Compared
-
-The following models are evaluated:
+## 🤖 Models Compared
 
 - Logistic Regression
 - Decision Tree
@@ -178,11 +197,11 @@ The following models are evaluated:
 - XGBoost
 - LightGBM
 
-The best model is selected automatically based on Cross-Validation ROC-AUC.
+The best model is selected automatically based on cross-validated ROC-AUC score.
 
 ---
 
-# 📊 Evaluation Metrics
+## 📊 Evaluation Metrics
 
 The final model is evaluated using:
 
@@ -197,92 +216,70 @@ The final model is evaluated using:
 
 ---
 
-# 📈 Exploratory Data Analysis
+## 📈 Exploratory Data Analysis
 
-The EDA notebook includes:
+The EDA notebook (`notebooks/EDA.ipynb`) includes:
 
-- Dataset Overview
-- Missing Values Analysis
-- Numerical Feature Distributions
-- Categorical Feature Distributions
-- Correlation Heatmap
-- Outlier Detection
-- Target Distribution
-- Feature Relationships
-
-Notebook:
-
-```
-notebooks/01_eda.ipynb
-```
+- Dataset overview
+- Missing values analysis
+- Numerical feature distributions
+- Categorical feature distributions
+- Correlation heatmap
+- Outlier detection
+- Target distribution
+- Feature relationships
 
 ---
 
-# 📉 Model Evaluation
+## 📉 Model Evaluation
 
-The evaluation notebook includes:
+The evaluation notebook (`notebooks/Model_evaluation.ipynb`) includes:
 
-- Cross Validation Results
-- Classification Report
-- Confusion Matrix
-- ROC Curve
-- Performance Comparison
-- Feature Importance (where applicable)
-
-Notebook:
-
-```
-notebooks/02_model_evaluation.ipynb
-```
+- Cross-validation results
+- Classification report
+- Confusion matrix
+- ROC curve
+- Performance comparison across models
+- Feature importance (where applicable)
 
 ---
 
-# 🌐 Flask API
+## 🌐 Flask API
 
-Run the API
+Run the API:
 
 ```bash
 python app.py
 ```
 
 Default server:
-
 ```
 http://localhost:8080
 ```
 
----
+### Health Check
 
-## Health Check
+**GET** `/health`
 
-**GET**
-
-```
-/health
+```bash
+curl http://localhost:8080/health
 ```
 
-Response
-
+Response:
 ```json
 {
     "status": "healthy (sklearn pipeline)"
 }
 ```
 
----
+### Prediction
 
-## Prediction
+**POST** `/predict`
 
-**POST**
-
-```
-/predict
-```
-
-Example Request
-
-```json
-{
+```bash
+curl -X POST http://localhost:8080/predict \
+  -H "Content-Type: application/json" \
+  -d '{
     "hotel": "Resort Hotel",
     "lead_time": 342,
     "arrival_date_year": 2015,
@@ -311,11 +308,10 @@ Example Request
     "adr": 0,
     "required_car_parking_spaces": 0,
     "total_of_special_requests": 0
-}
+  }'
 ```
 
-Example Response
-
+Example response:
 ```json
 {
     "prediction": 0,
@@ -323,51 +319,52 @@ Example Response
 }
 ```
 
+> `prediction`: `0` = booking not canceled, `1` = booking canceled
+> `probability`: model's confidence score for cancellation
+
 ---
 
-# 🐳 Docker
+## 🐳 Docker
 
-Build Docker Image
+**Build the image**
 
 ```bash
 docker build -t hotel-booking-api .
 ```
 
-Run Container
+**Run the container**
 
 ```bash
 docker run -p 8080:8080 hotel-booking-api
 ```
 
----
-
-# 📌 Future Improvements
-
-- Hyperparameter Optimization
-- Feature Selection
-- CI/CD Pipeline
-- Cloud Deployment
-- Model Monitoring
-- MLflow Integration
-- Streamlit Dashboard
+The API will be available at `http://localhost:8080`.
 
 ---
 
-# 📜 License
+## 📌 Future Improvements
 
-This project is licensed under the MIT License.
-
-See the LICENSE file for details.
+- [ ] Hyperparameter optimization
+- [ ] Feature selection
+- [ ] CI/CD pipeline
+- [ ] Cloud deployment
+- [ ] Model monitoring
+- [ ] MLflow integration
+- [ ] Streamlit dashboard
 
 ---
 
-# 👨‍💻 Author
+## 📜 License
+
+This project is licensed under the **Apache-2.0 License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
 
 **Fares Ahmed**
-
-GitHub:
-https://github.com/fares-ahmed7
+GitHub: [@fares-ahmed7](https://github.com/fares-ahmed7)
 
 ---
 
-# ⭐ If you found this project useful, consider giving it a Star!
+⭐ If you found this project useful, consider giving it a star!
